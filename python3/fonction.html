@@ -124,17 +124,17 @@
 <li class="toctree-l2"><a class="reference internal" href="#les-fonctions-de-conversion-de-type">Les fonctions de conversion de type</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#convertir-en-nombre">Convertir en nombre</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#convertir-en-valeur-booleenne">Convertir en valeur booléenne</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#convertir-en-chaine-de-caractere">Convertir en chaîne de caractère</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convertir-en-chaine-de-caracteres">Convertir en chaîne de caractères</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#exercice">Exercice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exercices">Exercices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#declarer-une-fonction">Déclarer une fonction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#documenter-une-methode">Documenter une méthode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documenter-une-fonction">Documenter une fonction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#les-valeurs-de-retour">Les valeurs de retour</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#les-parametres-nommes">Les paramètres nommés</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#valeur-par-defaut-des-parametres">Valeur par défaut des paramètres</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fonction-et-portee-des-variables">Fonction et portée des variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Exercice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Exercices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#variable-globale-et-fonction">Variable globale et fonction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#notion-de-methode">Notion de méthode</a></li>
 </ul>
@@ -464,18 +464,18 @@ Python. On les appelle les <a class="reference external" href="https://docs.pyth
 est sans doute <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#print" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a>. Elle affiche sur la sortie standard du programme
 une message fourni en paramètre. Pour appeler une fonction dans un programme,
 il faut préciser son nom et passer entre parenthèses la liste des <strong>paramètres</strong>.
-La méthode <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#print" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> accepte en paramètre ce qu’elle doit afficher :</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># appel de la méthode print</span>
+La fonction <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#print" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> accepte en paramètre ce qu’elle doit afficher :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># appel de la fonction print</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Bonjour le monde&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Il est possible de passer plusieurs paramètres à la méthode <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#print" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a>. Dans
+<p>Il est possible de passer plusieurs paramètres à la fonction <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#print" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a>. Dans
 ce cas, il faut séparer la valeur des paramètres par une virgule.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cet appel affiche : Bonjour le monde</span>
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Bonjour&quot;</span><span class="p">,</span> <span class="s2">&quot;le&quot;</span><span class="p">,</span> <span class="s2">&quot;monde&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Il est également possible d’appeler la méthode <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#print" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> sans aucun paramètre.
+<p>Il est également possible d’appeler la fonction <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#print" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">print()</span></code></a> sans aucun paramètre.
 La fonction se contentera d’afficher une ligne vide sur la sortie standard.
 Même s’il n’y pas de paramètre, les parenthèses sont obligatoires en Python 3.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cet appel affiche une ligne vide</span>
@@ -499,7 +499,7 @@ de l’évaluation de l’expression qui est passé à la fonction :</p>
 </div>
 <p>Une fonction peut retourner une valeur, c’est-à-dire fournir le résultat de son
 traitement. Cette valeur peut être affectée à une variable. Par exemple,
-la méthode <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#abs" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">abs()</span></code></a> retourne la valeur absolue du nombre qui lui est passé
+la fonction <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#abs" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">abs()</span></code></a> retourne la valeur absolue du nombre qui lui est passé
 en paramètre :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
 <span class="n">valeur_absolue</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -546,7 +546,7 @@ console :</p>
 <span class="go">&#39;&lt;built-in function print&gt;&#39;</span>
 </pre></div>
 </div>
-<p>L’interpréteur appelle implicitement cette méthode. À chaque fois que vous
+<p>L’interpréteur appelle implicitement cette fonction. À chaque fois que vous
 tapez la touche <kbd class="kbd docutils literal notranslate">Entrer</kbd> à la fin d’une expression Python, l’interpréteur
 l’évalue et, si elle produit un résultat, il affiche la chaîne de caractères
 retournée par l’appel de <a class="reference external" href="https://docs.python.org/3.6/library/functions.html#repr" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">repr(o)</span></code></a> auquel est passé en paramètre
@@ -639,8 +639,8 @@ toujours la valeur <a class="reference external" href="https://docs.python.org/3
 </pre></div>
 </div>
 </div>
-<div class="section" id="convertir-en-chaine-de-caractere">
-<h3>Convertir en chaîne de caractère<a class="headerlink" href="#convertir-en-chaine-de-caractere" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="section" id="convertir-en-chaine-de-caracteres">
+<h3>Convertir en chaîne de caractères<a class="headerlink" href="#convertir-en-chaine-de-caracteres" title="Lien permanent vers ce titre">¶</a></h3>
 <p>La fonction <a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str" title="(disponible dans Python v3.6)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str()</span></code></a> permet de convertir en chaîne de caractères :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="go">&#39;1&#39;</span>
@@ -652,8 +652,8 @@ toujours la valeur <a class="reference external" href="https://docs.python.org/3
 </div>
 </div>
 </div>
-<div class="section" id="exercice">
-<h2>Exercice<a class="headerlink" href="#exercice" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="exercices">
+<h2>Exercices<a class="headerlink" href="#exercices" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="exercice admonition">
 <p class="admonition-title">Exercice : comparaison à la moyenne</p>
 <p>Écrivez un programme qui demande à l’utilisateur sa taille puis qui indique
@@ -675,6 +675,49 @@ Vous avez un écart de 0 centimètres par rapport à la moyenne
 </pre></div>
 </div>
 </div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice : conversion Fahrenheit / Celsius</p>
+<p>Écrivez un programme qui demande à l’utilisateur de saisir une température
+en degré Fahrenheit et qui affiche le résultat de la conversion en degré
+Celsius avec un seul chiffre après la virgule.</p>
+<p>La formule à appliquer :</p>
+<div class="math">
+<p><img src="../_images/math/e483efc1964ae117b79e6aa74970190915d1e514.svg" alt="d(f) = \frac{f - 32}{1.8}"/></p>
+</div><p>Exemple d’utilisation du programme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Température Fahrenheit ? 42
+Une température de 42.0°F correspond à 5.5°C
+</pre></div>
+</div>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice : QCM en invite de commande</p>
+<p>Écrivez un programme qui pose des questions pour lesquelles l’utilisateur
+doit fournir une réponse. Pour chaque réponse correcte, l’utilisateur
+marque un point. À la fin, le programme indique le nombre de réponses
+justes et le nombre de réponses fausses.</p>
+<p>Exemple d’utilisation du programme :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Quel est ton nom ?
+Sir Robin de Camelot.
+Quelle est ta quête ?
+Trouver le Saint Graal.
+Quelle est la capitale de la Syrie ?
+Je sais pas ça !
+
+Réponses correctes : 2
+Réponses incorrectes : 1
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Astuce</p>
+<p>Il faut avoir à l’esprit que :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="declarer-une-fonction">
 <h2>Déclarer une fonction<a class="headerlink" href="#declarer-une-fonction" title="Lien permanent vers ce titre">¶</a></h2>
@@ -692,7 +735,7 @@ Cela donne, à la fois, une indication visuelle au lecteur et à l’interpréte
 de code.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Le nom d’une fonction suit les mêmes convention que le nom des variables.
+<p>Le nom d’une fonction suit la même convention que le nom des variables.
 Il s’écrit en lettres minuscules et les mots sont séparés par un trait inférieur
 (<em>underscore</em>) suivant la notation dite du <a class="reference external" href="https://fr.wikipedia.org/wiki/Snake_case">snake case</a>.</p>
 </div>
@@ -720,8 +763,8 @@ vous devez utiliser le mot-clé <a class="reference external" href="https://docs
 </div>
 </div>
 </div>
-<div class="section" id="documenter-une-methode">
-<h2>Documenter une méthode<a class="headerlink" href="#documenter-une-methode" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="documenter-une-fonction">
+<h2>Documenter une fonction<a class="headerlink" href="#documenter-une-fonction" title="Lien permanent vers ce titre">¶</a></h2>
 <p>Pour écrire la documentation d’une fonction, il suffit d’ajouter une chaîne
 de caractères directement à la suite de la déclaration de la signature de la
 fonction. On appelle ce texte la <a class="reference external" href="https://docs.python.org/3.6/glossary.html#term-docstring" title="(disponible dans Python v3.6)"><code class="xref any docutils literal notranslate"><span class="pre">docstring</span></code></a>. C’est ce texte qui
@@ -751,7 +794,7 @@ d’avoir recours à des variables intermédiaires :</p>
     <span class="k">return</span> <span class="n">prenom</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">nom</span>
 </pre></div>
 </div>
-<p>Le mot-clè <a class="reference external" href="https://docs.python.org/3.6/reference/simple_stmts.html#return" title="(disponible dans Python v3.6)"><code class="xref any docutils literal notranslate"><span class="pre">return</span></code></a> interrompt immédiatement le traitement de la fonction et
+<p>Le mot-clé <a class="reference external" href="https://docs.python.org/3.6/reference/simple_stmts.html#return" title="(disponible dans Python v3.6)"><code class="xref any docutils literal notranslate"><span class="pre">return</span></code></a> interrompt immédiatement le traitement de la fonction et
 retourne la valeur au programme appelant. Si vous écrivez du code après un <a class="reference external" href="https://docs.python.org/3.6/reference/simple_stmts.html#return" title="(disponible dans Python v3.6)"><code class="xref any docutils literal notranslate"><span class="pre">return</span></code></a>,
 il ne sera jamais exécuté.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">creer_nom</span><span class="p">(</span><span class="n">prenom</span><span class="p">,</span> <span class="n">nom</span><span class="p">):</span>
@@ -775,7 +818,7 @@ variables différentes :</p>
     <span class="k">return</span> <span class="n">resultat</span><span class="p">,</span> <span class="n">reste</span>
 </pre></div>
 </div>
-<p>Le mot-clè <a class="reference external" href="https://docs.python.org/3.6/reference/simple_stmts.html#return" title="(disponible dans Python v3.6)"><code class="xref any docutils literal notranslate"><span class="pre">return</span></code></a> peut également être employé seul pour signaler la fin
+<p>Le mot-clé <a class="reference external" href="https://docs.python.org/3.6/reference/simple_stmts.html#return" title="(disponible dans Python v3.6)"><code class="xref any docutils literal notranslate"><span class="pre">return</span></code></a> peut également être employé seul pour signaler la fin
 d’une procédure. Dans cas, l’exécution de <a class="reference external" href="https://docs.python.org/3.6/reference/simple_stmts.html#return" title="(disponible dans Python v3.6)"><code class="xref any docutils literal notranslate"><span class="pre">return</span></code></a> interrompt immédiatement
 la procédure sans retourner de valeur.</p>
 </div>
@@ -874,7 +917,7 @@ pour l’interpréteur. On peut déclarer et utiliser des variables
 qui ont le même nom à condition qu’elles n’appartiennent pas à la même portée.</p>
 </div>
 <div class="section" id="id1">
-<h2>Exercice<a class="headerlink" href="#id1" title="Lien permanent vers ce titre">¶</a></h2>
+<h2>Exercices<a class="headerlink" href="#id1" title="Lien permanent vers ce titre">¶</a></h2>
 <div class="exercice admonition">
 <p class="admonition-title">Exercice : comparaison à la moyenne</p>
 <p>Reprenez l’exercice qui permet de comparer une taille saisie avec la moyenne.</p>
@@ -891,6 +934,11 @@ en centimètres. Le second paramètre a une valeur par défaut qui correspond
 et affiche l’information à l’utilisateur.</p>
 </dd>
 </dl>
+</div>
+<div class="exercice admonition">
+<p class="admonition-title">Exercice : fonction de conversion Fahrenheit / Celsius</p>
+<p>Écrivez une fonction pour convertir une température en degré Fahrenheit en
+une température en degré Celsius.</p>
 </div>
 </div>
 <div class="section" id="variable-globale-et-fonction">
@@ -959,7 +1007,7 @@ Un message local
 </div>
 <div class="admonition caution">
 <p class="admonition-title">Prudence</p>
-<p>Le recours a des variables globales est souvent le signe d’une mauvaise
+<p>Le recours à des variables globales est souvent le signe d’une mauvaise
 conception logicielle et est fortement déconseillé. On se limite généralement
 à utiliser ce type de variables pour représenter des constantes, c’est-à-dire
 des valeurs qui ne doivent pas changer pendant l’exécution du programme. Il
@@ -979,7 +1027,7 @@ pour lire et utiliser la valeur d’une variable globale.</p>
 </div>
 <div class="section" id="notion-de-methode">
 <h2>Notion de méthode<a class="headerlink" href="#notion-de-methode" title="Lien permanent vers ce titre">¶</a></h2>
-<p>En plus des fonctions, Python reconnaît la notion de <strong>méthode</strong>. Une méthode
+<p>En plus des fonctions, Python connaît la notion de <strong>méthode</strong>. Une méthode
 est une séquence de traitement que l’on effectue sur un type. Une méthode est appelée
 pour une valeur, une variable ou un paramètre en utilisant l’opérateur <code class="docutils literal notranslate"><span class="pre">.</span></code>.
 Par exemple, une chaîne de caractères possède les méthodes <a class="reference external" href="https://docs.python.org/3.6/library/stdtypes.html#str.upper" title="(disponible dans Python v3.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">upper()</span></code></a>
