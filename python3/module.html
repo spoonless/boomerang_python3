@@ -254,6 +254,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#import-relatif">Import relatif</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#exercices">Exercices</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="decorateur.html">Les décorateurs</a><ul>
@@ -838,6 +839,49 @@ dans le même répertoire, on peut écrire :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">..ecran</span> <span class="kn">import</span> <span class="n">accueil</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="exercices">
+<h2>Exercices<a class="headerlink" href="#exercices" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition-exercice-en-forme-d-astuce admonition">
+<p class="admonition-title">Exercice en forme d’astuce</p>
+<p>Essayez la commande :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python -m http.server
+</pre></div>
+</div>
+</div>
+<div class="admonition-exercice-trouver-un-nombre admonition">
+<p class="admonition-title">Exercice : Trouver un nombre</p>
+<p>Utilisez la fonction <a class="reference external" href="https://docs.python.org/3.6/library/random.html#random.randint" title="(disponible dans Python v3.6)"><code class="xref py py-func docutils literal notranslate"><span class="pre">randint()</span></code></a> du module <a class="reference external" href="https://docs.python.org/3.6/library/random.html#module-random" title="(disponible dans Python v3.6)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span></code></a> pour
+tirer un nombre aléatoirement entre 1 et 20.</p>
+<p>L’utilisateur a droit à trois tentatives pour deviner ce nombre.</p>
+</div>
+<div class="admonition-exercice-trouver-un-nombre admonition">
+<p class="admonition-title">Exercice : Trouver un nombre</p>
+<p>Utilisez la fonction <a class="reference external" href="https://docs.python.org/3.6/library/datetime.html#datetime.datetime.now" title="(disponible dans Python v3.6)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">datetime.now()</span></code></a>
+du module <a class="reference external" href="https://docs.python.org/3.6/library/datetime.html#module-datetime" title="(disponible dans Python v3.6)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">datetime</span></code></a> pour connaître la date et l’heure et l’afficher.</p>
+</div>
+<div class="admonition-exercice-organiser-un-projet-en-module admonition">
+<p class="admonition-title">Exercice : Organiser un projet en module</p>
+<p>Reprenez le projet pour l’affichage de l’écart avec la taille. Découpez
+ce projet avec un module sous la forme d’un répertoire qui s’appelle <code class="docutils literal notranslate"><span class="pre">taille</span></code>.</p>
+<p>Le contenu du module doit être :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>taille
+    __init__.py
+    __main__.py
+    entree_sortie.py
+    calcul.py
+</pre></div>
+</div>
+<p>Le module <code class="docutils literal notranslate"><span class="pre">entree_sortie</span></code> doit regrouper les fonctions pour interagir avec
+l’utilisateur. Le module <code class="docutils literal notranslate"><span class="pre">calcul</span></code> doit regrouper la fonction de calcul
+de différence. Le fichier principal du module <code class="docutils literal notranslate"><span class="pre">__main__</span></code> doit permettre
+d’exécuter le programme.</p>
+<p>L’application peut maintenant s’exécuter directement en ligne de commande
+en invoquant le module :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ python -m taille
+</pre></div>
 </div>
 </div>
 </div>

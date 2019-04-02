@@ -254,6 +254,7 @@
 <li class="toctree-l3"><a class="reference internal" href="module.html#import-relatif">Import relatif</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="module.html#exercices">Exercices</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="decorateur.html">Les décorateurs</a><ul>
@@ -785,7 +786,7 @@ est affiché lorsqu’on passe le nom de la fonction à la fonction <a class="re
 suivi de la valeur à retourner.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">creer_nom</span><span class="p">(</span><span class="n">prenom</span><span class="p">,</span> <span class="n">nom</span><span class="p">):</span>
     <span class="n">nom_complet</span> <span class="o">=</span> <span class="n">prenom</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">nom</span>
-     <span class="k">return</span> <span class="n">nom_complet</span>
+    <span class="k">return</span> <span class="n">nom_complet</span>
 </pre></div>
 </div>
 <p>La valeur à retourner peut être le résultat d’une expression. Cela evite souvent
@@ -828,7 +829,7 @@ la procédure sans retourner de valeur.</p>
 vous pouvez, lors de l’appel d’une fonction, préciser le nom et la valeur du
 paramètre.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dire_bonjour_a</span><span class="p">(</span><span class="n">nom</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Bonjour&quot;</span><span class="p">,</span> <span class="n">nom</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Bonjour&quot;</span><span class="p">,</span> <span class="n">nom</span><span class="p">)</span>
 
 <span class="n">dire_bonjour_a</span><span class="p">(</span><span class="n">nom</span><span class="o">=</span><span class="s2">&quot;David&quot;</span><span class="p">)</span>
 </pre></div>
@@ -875,7 +876,7 @@ variables :</p>
     <span class="c1"># déclaration de la variable tva</span>
     <span class="n">tva</span> <span class="o">=</span> <span class="n">prix_ht</span> <span class="o">*</span> <span class="n">taux_tva</span> <span class="o">/</span> <span class="mi">100</span>
     <span class="n">tva</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">tva</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-     <span class="k">return</span> <span class="n">prix_ht</span> <span class="o">+</span> <span class="n">tva</span>
+    <span class="k">return</span> <span class="n">prix_ht</span> <span class="o">+</span> <span class="n">tva</span>
 </pre></div>
 </div>
 <div class="admonition tip">
