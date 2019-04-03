@@ -1,14 +1,13 @@
 
-def dire_bonjour_a(nom, smiley=":)"):
-    """Fonction qui dit bonjour mais aussi bonsoir"""
-    print("Bonjour", nom, sep=f" {smiley} ", end=" et c'est fini\n\n")
-    print("Et bonsoir")
-
-
-def creer_nom(prenom, nom="Doe"):
+def creer_nom(prenom, nom):
     nom_complet = prenom + " " + nom
     return nom_complet
 
+options_print = {
+    "sep": " coucou ",
+    "end": "\n**************************\n"
+}
 
-le_nom_a_afficher = creer_nom("David")
-dire_bonjour_a(le_nom_a_afficher)
+print("Monsieur", creer_nom("David", "Gayerie"), **options_print)
+
+print("coucou", "comment", "ça", "va")
