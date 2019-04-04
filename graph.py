@@ -1,12 +1,11 @@
 import tkinter
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
-
 import numpy as np
 
 
 root = tkinter.Tk()
-root.wm_title("Embedding in Tk")
+root.title("Embedding in Tk")
 
 fig = Figure(figsize=(5, 4), dpi=100)
 t = np.arange(0, 3, .01)

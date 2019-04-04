@@ -4,18 +4,17 @@ Application simple
 @author: david
 '''
 import tkinter as tk
-from collections import OrderedDict
 
 window = tk.Tk()
 window.title("Info contact")
 
-champs = OrderedDict({
+champs = {
     "nom": tk.StringVar(),
     "prenom": tk.StringVar(),
     "adresse": tk.StringVar(),
     "code postal": tk.StringVar(),
     "ville": tk.StringVar(),
-})
+}
 
 for ligne, (libelle, var) in enumerate(champs.items()):
     label = tk.Label(window, text=libelle)
