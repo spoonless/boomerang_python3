@@ -4,9 +4,15 @@ TAILLE_MOYENNE = 175
 
 def demander_taille():
     """Demande la taille et retourne la valeur en centimètres"""
-    taille_saisie = input("Quelle est votre taille ?")
-    return int(float(taille_saisie) * 100)
-
+    taille = None
+    while taille is None:
+        taille_saisie = input("Quelle est votre taille ?")
+        try:
+            taille_en_metre = float(taille_saisie)
+            taille = int(taille_en_metre * 100)
+        except ValueError:
+            print("Ça m'étonne ! Êtes-vous sûr ?")
+    return taille
 
 def calculer_ecart_taille(taille1, taille2=TAILLE_MOYENNE):
     return taille1 - taille2

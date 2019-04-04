@@ -1,0 +1,575 @@
+Gestion des fichiers
+####################
+
+Python permet très facilement de manipuler des fichiers tout en garantissant
+une très bonne portabilité du code quel que soit le système d'exploitation
+sur lequel s'exécute le programme (pour peu que le développeur soit attentif
+à ce type de problématique).
+
+Les opérations de manipulation de fichier : écriture, lecture, création, suppression
+sont toutes susceptibles d'échouer. Dans ce cas, les fonctions ou les méthodes
+produiront une erreur de type :exc:`OSError` ou d'un type héritant de cette
+exception.
+
+Ouvrir et fermer un fichier
+***************************
+
+La fonction :func:`open` permet de récupérer un descripteur de fichier en
+passant en paramètre le chemin de ce fichier. Le descripteur de fichier va
+nous permettre de réaliser les opérations de lecture et/ou d'écriture dans le
+fichier.
+
+Un descripteur de fichier est une ressource système. Cela signifie qu'il est
+géré par le système d'exploitation. Lorsque les opérations sur le fichier sont
+terminées, il faut fermer le descripteur de fichier à l'aide de la méthode
+:meth:`~io.IOBase.close`. Ne pas fermer un descripteur de fichier conduit à une fuite
+de ressources (*resource leak*). Si un programme ouvre trop de fichiers sans
+jamais fermer les descripteurs de fichiers, le système d'exploitation peut
+finir par refuser d'ouvrir des fichiers supplémentaires.
+
+::
+
+    f = open("monfichier.txt)
+    # faire des opérations sur le contenu du fichier
+    f.close()
+
+Comme des erreurs peuvent survenir lors de la lecture ou de l'écriture dans
+un fichier ou comme il est très facile d'oublier d'appeler la méthode
+:meth:`~io.IOBase.close`, Python fournit une syntaxe spéciale :
+le :any:`with <with>`.
+
+::
+
+    with open("monfichier.txt") as f:
+        # faire des opérations sur le contenu du fichier
+        pass
+
+La syntaxe :any:`with <with>` **appelle automatiquement** la méthode
+:meth:`~io.IOBase.close` du descripteur de fichier à la sortie du bloc (même si
+la sortie du bloc est due à une erreur).
+
+.. note::
+
+    La syntaxe :any:`with <with>` fonctionne en Python pour divers types
+    de ressources du système : les fichiers, les accès réseau, les processus,
+    les objets de synchronisation entre processus et threads.
+
+    Vous pouvez gérer plusieurs ressources avec un :any:`with <with>` :
+
+    ::
+
+        with open("monfichier.txt") as f, open("autrefichier.txt") as f2:
+            # faire des opérations sur le contenu des fichiers
+            pass
+
+    Si vous souhaitez développer une classe qui fonctionne comme un gestionnaire
+    de ressources et dont les instances peuvent être initialisées dans une structure
+    :any:`with <with>` comme les descripteurs de fichiers, alors votre classe
+    doit fournir une implémentation pour les méthodes spéciales
+    :meth:`~object.__enter__` et :meth:`~object.__exit__`.
+
+Lire le contenu d'un fichier
+****************************
+
+Par défaut, la fonction :func:`open` permet de lire le contenu d'un
+fichier texte.
+
+Supposons que nous ayons un fichier nommé :file:`dialogues.txt` dans le répertoire
+courant.
+
+.. literalinclude:: assets/dialogues.txt
+    :caption: Le fichier dialogues.txt
+    :language: text
+
+Pour obtenir le contenu du fichier dans une chaîne de caractères :
+
+::
+
+    with open("dialogues.txt") as f:
+        contenu = f.read()
+    print(contenu)
+
+Pour obtenir le contenu du fichier sous la forme d'un tableau de chaînes de
+caractères (un élément par ligne) :
+
+::
+
+    with open("dialogues.txt") as f:
+        lignes = f.readlines()
+    print(len(lignes))
+    # affiche 5
+
+Un descripteur de fichier agit également comme une séquence sur les lignes
+d'un fichier.
+
+::
+
+    with open("dialogues.txt") as f:
+        for ligne in f:
+            print(ligne)
+
+.. note::
+
+    Lorsqu'on lit un fichier texte, chaque ligne inclue le caractère de retour
+    à la ligne présent dans le fichier. Pour le supprimer, on peut utiliser
+    la méthode :meth:`str.rstrip`
+
+    ::
+
+        with open("dialogues.txt") as f:
+            for ligne in f:
+                print(ligne.rstrip('\n'))
+
+Les modes de fichier
+********************
+
+Lorsqu'on ouvre un fichier, il faut préciser le mode d'ouverture qui dépend
+du type du fichier et des opérations que l'on souhaite réaliser. Le mode est
+représenté par une chaîne de caractères qui est passée à la fonction :func:`open`
+avec le paramètre ``mode``.
+
+.. csv-table::
+    :header: Mode, Description
+    :widths: 2,10
+
+    "r", "ouverture en lecture (mode par défaut)"
+    "w", "ouverture en écriture (efface le contenu précédent)"
+    "x", "ouverture uniquement pour création (l'ouverture échoue si le fichier existe déjà)"
+    "\+", "ouverture en lecture et écriture"
+    "a", "ouverture en écriture pour ajout en fin de fichier"
+    "b", "fichier binaire"
+    "t", "fichier texte (mode par défaut)"
+
+::
+
+    # ouverture en écriture
+    with open("dialogues.txt", mode="w") as f:
+        pass
+
+::
+
+    # ouverture d'un fichier binaire en création
+    with open("fichier.bin", mode="xb") as f:
+        pass
+
+Spécificité du mode texte
+=========================
+
+Ouvrir un fichier en mode texte (mode par défaut ou ``t``) entraîne
+un travail de conversion par Python. Convertir les données d'un fichier
+en chaîne de caractères exige d'utiliser une **famille d'encodage**. Il est
+possible de préciser la famille d'encodage d'un fichier grâce au paramètre
+``encoding`` :
+
+::
+
+    # ouverture en écriture
+    with open("dialogues.txt", encoding="utf-8") as f:
+        pass
+
+Si le paramètre ``encoding`` n'est pas spécifié alors Python utilise
+un encodage qui est **dépendant du système** qui exécute le code (ce qui
+peut nuire à la portabilité des fichiers produits). Pour connaître l'encodage
+utilisé par défaut par l'interpréteur, il faut utiliser les méthodes du
+module :mod:`locale` :
+
+::
+
+    >>> import locale
+    >>> locale.getpreferredencoding()
+    'UTF-8'
+
+Le mode texte entraîne également une conversion des caractères de
+`fin de ligne <https://fr.wikipedia.org/wiki/Fin_de_ligne>`_
+puisque tous les systèmes d'exploitation n'utilisent pas la même convention.
+Python garantit une représentation universelle du caractère de fin de ligne
+en utilisant ``\n``.
+
+Le mode binaire (``b``) est un mode qui permet d'accéder directement au
+contenu du fichier sans conversion de la part de Python. Dans ce cas,
+la lecture du fichier retourne des :class:`bytes` et non pas des chaînes
+de caractères.
+
+Écrire dans un fichier
+**********************
+
+Pour écrire d'un bloc dans un fichier, on peut utiliser la méthode
+:meth:`~io.RawIOBase.write` et pour écrire une liste de lignes, il faut utiliser
+la méthode :meth:`~io.IOBase.writelines`. Attention pour les fichiers textes,
+ces méthodes n'ajoutent pas de caractères de fin de ligne, il faut donc les
+écrire explicitement.
+
+::
+
+    lignes = ["- Pull the other one!\n",
+              "- I am. And this my trusty servant Patsy.\n"]
+
+    # ouverture d'un fichier texte en ajout
+    with open("dialogues.txt", mode="a") as f:
+        f.writelines(lignes)
+
+.. caution::
+
+    Il faut se rappeler que le mode d'ouverture en écriture (``w``) **remplace
+    intégralement** le contenu du fichier. Pour ajouter à la fin du fichier, il
+    faut ouvrir le fichier en mode ajout (``a``) sous peine de perdre tout
+    le contenu précédemment sauvé.
+
+Chemin de fichier
+*****************
+
+Les fichiers sont organisés selon une structure arborescente dans laquelle
+un nœud peut être soit un fichier soit un répertoire. Même si tous les systèmes
+d'exploitation suivent le même principe, il existe des différences majeures
+d'organisation. Le système MS-Windows utilise un système de fichiers multi-têtes
+(c:, d:, e:...) tandis que les systèmes \*nix et MacOS utilisent un système
+mono-tête dont la racine est :file:`/`. Dans la représentation des chemins
+de fichiers, MS-Windows utilise le caractère ``\`` pour séparer les composants
+d'un chemin :
+
+.. code-block:: text
+
+    C:\\Users\david\Documents\monfichier.txt
+
+tandis que les systèmes \*nix et MacOs utilisent le caractère ``/``
+
+.. code-block:: text
+
+    /home/david/Documents/monfichier.txt
+
+Enfin, il faut se souvenir que le système de fichiers de MS-Windows n'est pas sensible
+à la casse (*case insensitive*), c'est-à-dire que les mots peuvent être écrits
+en lettres majuscules ou en lettres minuscules. Au contraire, les systèmes
+\*nix et MacOS sont sensibles à la casse (*case sensitive*), c'est-à-dire qu'un
+mot écrit en lettres majuscules est différent d'un mot écrit en lettres minuscules.
+
+Toutes ces nuances peuvent rendre difficiles l'écriture d'un programme portable
+d'un système à l'autre. Heureusement, la bibliothèque standard Python fournit
+plusieurs solutions pour aider les développeurs.
+
+Le module *os.path*
+===================
+
+Le module :mod:`os.path` fournit des fonctions élémentaires pour nous aider à
+gérer les chemins de fichiers.
+
+:func:`~os.path.join`
+    Cette fonction permet de créer un chemin en utilisant le séparateur approprié
+    pour le système.
+
+    ::
+
+        import os.path as path
+
+        chemin = path.join("fichiers", "monfichier.txt")
+        print(chemin)
+        # Sous Windows affiche fichiers\monfichier.txt
+        # Sous *nix ou MacOS, affiche fichiers/monfichier.txt
+
+:func:`~os.path.abspath`
+    Cette fonction retourne le chemin absolu.
+
+    ::
+
+        import os.path as path
+
+        chemin = path.abspath("monfichier.txt")
+        print(chemin)
+        # Si le répertoire de travail est /home/david/Documents
+        # affiche /home/david/Documents/monfichier.txt
+
+Le module *pathlib*
+===================
+
+Le module :mod:`pathlib` est un module de haut-niveau qui permet à la fois
+de manipuler un chemin mais également d'interagir avec le fichier ou le répertoire
+désigné par ce chemin. C'est un module tout-en-un qui facilite grandement le
+travail sur les fichiers. L'élément central du module est la classe
+:class:`~pathlib.Path`.
+
+::
+
+    >>> from pathlib import Path
+    >>> path = Path("/", "home", "david", "Documents", "monfichier.txt")
+    >>> str(path)
+    '/home/david/Documents/monfichier.txt'
+    >>> path.parts
+    ('/', 'home', 'david', 'Documents', 'monfichier.txt')
+    >>> path.root
+    '/'
+    >>> path.drive
+    ''
+    >>> path.name
+    'monfichier.txt'
+    >>> parent = path.parent
+    >>> parent.parts
+    ('/', 'home', 'david', 'Documents')
+    >>> path.is_file()
+    True
+    >>> path.is_dir()
+    False
+    >>> path.parent.is_file()
+    False
+    >>> path.parent.is_dir()
+    True
+
+La classe :class:`~pathlib.Path` possède la méthode :meth:`~pathlib.Path.open`
+qui accepte les mêmes paramètres que la fonction :func:`open` sauf le chemin
+qui est déjà représenté par l'objet lui-même :
+
+::
+
+    from pathlib import Path
+
+
+    chemin = Path("dialogues.txt")
+
+    with chemin.open() as f:
+        for ligne in f:
+            print(ligne)
+
+On peut même faire l'économie de ce code en appelant la méthode :meth:`~pathlib.Path.read_text`
+qui ouvre le fichier en mode texte, lit l'intégralité du fichier et referme le fichier :
+
+::
+
+    from pathlib import Path
+
+
+    chemin = Path("dialogues.txt")
+    contenu = chemin.read_text()
+
+Pour construire un chemin à partir d'un autre chemin, il suffit
+d'utiliser l'opérateur ``/`` qui est utilisé, non pas comme opérateur de la
+division, mais comme le séparateur universel de chemin de fichiers :
+
+::
+
+    >>> chemin = Path("mondossier")
+    >>> chemin_fichier = chemin / "mon fichier.txt"
+    >>> chemin_fichier.parts
+    ('mondossier', 'mon fichier.txt')
+
+::
+
+    >>> chemin_fichier = Path.home() / "Documents" / "monfichier.txt"
+    >>> str(chemin_fichier)
+    '/home/david/Documents/monfichier.txt'
+
+Actions sur les fichiers et les répertoires
+*******************************************
+
+Il est possible de réaliser des opérations élémentaires sur les fichiers et
+les répertoires soit avec les modules :mod:`os` et :mod:`shutil` soit avec le module :mod:`pathlib`.
+Les modules :mod:`os` et :mod:`shutil` sont historiquement les premiers modules qui ont été introduits
+en Python. Ils proposent surtout des fonctions alors que le module :mod:`pathlib`
+est orienté objet avec notamment la classe :class:`~pathlib.Path`.
+
+Connaître le répertoire de travail
+==================================
+
+Le répertoire de travail correspond au répertoire courant au moment du lancement
+de l'interpréteur Python.
+
+.. code-block:: python
+    :caption: Avec le module :mod:`os`
+
+    >>> import os
+    >>> os.getcwd()
+
+.. code-block:: python
+    :caption: Avec le module :mod:`pathlib`
+
+    >>> import pathlib
+    >>> pathlib.Path.cwd()
+
+Connaître le répertoire de l'utilisateur
+========================================
+
+.. code-block:: python
+    :caption: Avec le module :mod:`os`
+
+    >>> import os
+    >>> os.environ['HOME']
+
+.. code-block:: python
+    :caption: Avec le module :mod:`pathlib`
+
+    >>> import pathlib
+    >>> pathlib.Path.home()
+
+Copier un fichier
+=================
+
+.. code-block:: python
+    :caption: Avec le module :mod:`shutil`
+
+    >>> import shutil
+    >>> shutil.copy("monfichier.txt", "macopie.txt")
+
+
+Supprimer un fichier
+====================
+
+.. code-block:: python
+    :caption: Avec le module :mod:`os`
+
+    >>> import os
+    >>> os.remove("monfichier.txt")
+
+.. code-block:: python
+    :caption: Avec le module :mod:`pathlib`
+
+    >>> import pathlib
+    >>> p = pathlib.Path("monfichier.txt")
+    >>> p.unlink()
+
+Créer un répertoire
+===================
+
+.. code-block:: python
+    :caption: Avec le module :mod:`os`
+
+    >>> import os
+    >>> os.mkdir("monrepertoire")
+
+.. code-block:: python
+    :caption: Avec le module :mod:`pathlib`
+
+    >>> import pathlib
+    >>> p = pathlib.Path("monrepertoire")
+    >>> p.mkdir()
+
+Supprimer un répertoire
+=======================
+
+Pour supprimer un répertoire, ce dernier doit être vide.
+
+.. code-block:: python
+    :caption: Avec le module :mod:`os`
+
+    >>> import os
+    >>> os.rmdir("monrepertoire")
+
+.. code-block:: python
+    :caption: Avec le module :mod:`pathlib`
+
+    >>> import pathlib
+    >>> p = pathlib.Path("monrepertoire")
+    >>> p.rmdir()
+
+Vérifier qu'un fichier existe
+=============================
+
+.. code-block:: python
+    :caption: Avec le module :mod:`os.path`
+
+    >>> import os.path
+    >>> os.path.exists("monfichier.txt")
+
+.. code-block:: python
+    :caption: Avec le module :mod:`pathlib`
+
+    >>> import pathlib
+    >>> p = pathlib.Path("monfichier.txt")
+    >>> p.exists()
+
+Lister le contenu d'un répertoire
+=================================
+
+.. code-block:: python
+    :caption: Avec le module :mod:`os`
+
+    >>> import os
+    >>> liste_fichiers = os.listdir("monrepertoire")
+
+.. code-block:: python
+    :caption: Avec le module :mod:`pathlib`
+
+    >>> import pathlib
+    >>> p = pathlib.Path("monrepertoire")
+    >>> liste_fichiers = list(p.iterdir())
+
+La méthode :meth:`~pathlib.Path.iterdir` retourne un itérateur sur des objets de
+type :class:`~pathlib.Path` plutôt qu'un tableau de chaînes de caractères comme
+:func:`os.listdir`.
+
+Rechercher des fichiers
+=======================
+
+Le module :mod:`glob` permet d'effectuer une recherche dans l'arborescence
+de fichiers. On peut utiliser le caractère ``?`` pour représenter n'importe
+quel caractère et  ``*`` pour représenter n'importe quelle suite de caractères.
+
+.. code-block:: python
+    :caption: Avec le module :mod:`glob`
+
+    >>> import glob
+    >>> liste_fichiers = glob.glob("*.py")
+
+Il est possible d'effectuer une recherche récursive (c'est-à-dire en incluant les sous répertoires)
+en positionnant la paramètre ``recursive`` à :any:`True <True>` et en utilisant
+la séquence ``**`` pour indiquer un ou plusieurs sous répertoires.
+
+.. code-block:: python
+    :caption: Avec le module :mod:`glob`
+
+    >>> import glob
+    >>> liste_fichiers = glob.glob("**/*.py", recursive=True)
+
+La classe :class:`~pathlib.Path` possède également la méthode
+:meth:`~pathlib.Path.glob`.
+
+.. code-block:: python
+    :caption: Avec le module :mod:`pathlib`
+
+    >>> import pathlib
+    >>> liste_fichiers = list(pathlib.Path.cwd().glob("**/*.py"))
+
+La méthode :meth:`~pathlib.Path.glob` retourne un itérateur sur des objets de
+type :class:`~pathlib.Path` plutôt qu'un tableau de chaînes de caractères comme
+:func:`glob.glob`.
+
+Lecture de fichiers CSV
+***********************
+
+Le fichier CSV (*comma separated values*) est un format texte très simple pour
+stocker des tables de données. Le module :mod:`csv` offre des méthodes pour lire
+et écrire.
+
+Si on dispose du fichier suivant :
+
+.. literalinclude:: assets/filmographie.csv
+    :language: text
+    :caption: Le fichier *filmographie.csv*
+
+::
+
+    import csv
+
+    with open("filmographie.txt") as f:
+        lecteur = csv.reader(f)
+        for ligne in lecteur:
+            print(ligne)
+
+Chaque ligne lue est un tableau de chaînes de caractères contenant chaque valeur
+en colonne :
+
+::
+
+    ['1971', 'And Now for Something Completely Different']
+    ['1975', 'Holy Grail']
+    ['1979', 'Life of Brian']
+    ['1983', 'The Meaning of Life']
+    ['1996', 'The Wind in the Willows']
+
+
+.. todo ::
+
+    * lire des caractères (read et seek)
+    * configfile
+
+.. meta::
+  :author: David Gayerie
+  :description: Python 3 - Les fondamentaux du langage
+  :keywords: Python, programmation objet, POO, langage de programmation
