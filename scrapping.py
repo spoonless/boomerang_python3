@@ -28,18 +28,20 @@ def download(url):
         print(f"Sorry, could not save {filename}")
 
 
-def go_and_find(url, extensions):    
+def go_and_find(url, extensions, filter_function = None):
+    """ """
     with urllib.request.urlopen(url=url, context=create_ssl_context()) as r:
         page = BeautifulSoup(r, features="html.parser")
         for balise_a in page.find_all('a'):
             lien = balise_a["href"]
-            for extension in extensions:
-                if lien.endswith(extension):
-                    lien_absolu = urllib.parse.urljoin(base=url, url=lien)
-                    download(lien_absolu)
-                    break
+            if filter_function is None or filter_function(lien):
+                for extension in extensions:
+                    if lien.endswith(extension):
+                        lien_absolu = urllib.parse.urljoin(base=url, url=lien)
+                        download(lien_absolu)
+                        break
 
 
 if __name__ == "__main__":
     adresse_site = "https://spoonless.github.io/boomerang_python3/index.html"
-    go_and_find(adresse_site, extensions=('.html', '.zip'))
+    go_and_find(adresse_site, extensions=['.zip'])
