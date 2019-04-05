@@ -1,5 +1,5 @@
 '''
-Created on 3 avr. 2019
+Exemple d'utilisation de la classe Vecteur du module mabibmath.
 
 @author: david
 '''

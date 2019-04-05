@@ -1,3 +1,11 @@
+"""
+Calcule l'écart à la moyenne d'une taille en fonction du sexe.
+On utilise un dictionnaire pour stocker les tailles moyennes, ce qui évite
+d'utiliser un if.
+
+@author: David Gayerie
+"""
+
 # Calcul de l'écart à la moyenne
 TAILLE_MOYENNE_HOMME = 175
 TAILLE_MOYENNE_FEMME = 165

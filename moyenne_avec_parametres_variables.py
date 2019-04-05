@@ -1,3 +1,10 @@
+"""
+Calcul de la moyenne de nombres saisis en utilisant le compactage
+et décompactage de paramètres.
+
+@author: David Gayerie
+"""
+
 def moyenne(x, *args):
     """Calcule la moyenne d'un nombre quelconque de valeurs passées en paramètres."""
     nb = 1 + len(args)

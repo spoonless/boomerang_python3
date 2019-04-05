@@ -1,3 +1,8 @@
+"""
+Calcule l'écart à la moyenne d'une taille en fonction du sexe.
+
+@author: David Gayerie
+"""
 # Calcul de l'écart à la moyenne
 TAILLE_MOYENNE_HOMME = 175
 TAILLE_MOYENNE_FEMME = 165

@@ -1,4 +1,8 @@
-# conversion farenheit en celsius
+"""
+conversion farenheit en celsius
+
+@author: David Gayerie
+"""
 
 temp_farenheit_saisie = input("Température Fahrenheit : ")
 temp_farenheit = float(temp_farenheit_saisie)

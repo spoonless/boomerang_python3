@@ -1,5 +1,5 @@
 '''
-Created on 3 avr. 2019
+Exemple d'utilisation simple du module datetime.
 
 @author: david
 '''

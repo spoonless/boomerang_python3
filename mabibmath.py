@@ -1,3 +1,8 @@
+"""
+Exemple de création d'un module.
+
+@author: David Gayerie
+"""
 import math
 
 

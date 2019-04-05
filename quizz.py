@@ -13,4 +13,3 @@ points += int(reponse == "Damas.")
 
 print("Réponses correctes", points)
 print("Réponses incorrectes", 3 - points)
-

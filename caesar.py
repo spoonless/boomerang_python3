@@ -1,3 +1,8 @@
+"""
+Implémentation de l'algorithme de chiffrement de César.
+
+@author: David Gayerie
+"""
 DECALAGE = 12
 NB_LETTRES = 26
 

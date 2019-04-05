@@ -1,3 +1,9 @@
+"""
+Exemple de programmation objet pour représenter des candidats et des 
+offres d'emploi
+
+@author:David Gayerie
+"""
 from datetime import datetime
 
 class Candidat:
@@ -42,6 +48,3 @@ candidat = Candidat(experience=5)
 
 etat = offre.correspond_au(candidat)
 print(etat)
-
-
-

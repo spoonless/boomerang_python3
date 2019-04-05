@@ -1,3 +1,8 @@
+"""
+Calcule l'écart à la moyenne.
+
+@author: David Gayerie
+"""
 # Calcul de l'écart à la moyenne
 TAILLE_MOYENNE = 175
 

@@ -1,5 +1,8 @@
-# Calcul de la moyenne
+"""
+Calcul de la moyenne de nombres saisis
 
+@author: David Gayerie
+"""
 def demander_nombres():
     nombres = []
     while True:
@@ -22,14 +25,3 @@ else:
     mean = moyenne(nombres_saisis)
     print(nombres_saisis)
     print(f"La moyenne est {mean:.2f}")
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    

@@ -1,3 +1,10 @@
+"""
+Calcule l'écart à la moyenne d'une taille.
+Le programme est découpé en fonctions.
+
+@author: David Gayerie
+"""
+
 # Calcul de l'écart à la moyenne
 TAILLE_MOYENNE = 175
 

@@ -1,4 +1,8 @@
+"""
+Compte le numéro des lignes d'un fichier qui contiennent le mot python.
 
+@author: David Gayerie
+"""
 dictionnaire = {
     ".": None,
     ",": None,
@@ -13,6 +17,7 @@ dictionnaire = {
     ")": None,
 }
 
+# traducteur pour supprimer les caractères qui ne sont pas des lettres
 traducteur = str.maketrans(dictionnaire)
 
 resultat = []

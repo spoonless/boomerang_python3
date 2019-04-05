@@ -1,3 +1,9 @@
+"""
+Implémentation de l'algorithme de chiffrement de César en utilisant
+la méthode str.translate.
+
+@author: David Gayerie
+"""
 LETTRES_MIN = "abcdefghijklmnopqrstuvwxyz"
 LETTRES_MAJ = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 

@@ -1,3 +1,10 @@
+"""
+Écrit dans un fichier les lignes extraits d'un autre fichier qui ne contiennent
+le mot python.
+
+@author: David Gayerie
+"""
+
 dictionnaire = {
     ".": None,
     ",": None,
@@ -16,7 +23,6 @@ traducteur = str.maketrans(dictionnaire)
 
 with open("monfichier.txt", encoding="utf-8") as entree, open("test_sortie.txt", mode="w", encoding="utf-8") as sortie:
     for ligne in entree:
-        ligne = ligne.translate(traducteur).lower()
-        mots = ligne.split()
-        if "le" in mots:
+        mots = ligne.translate(traducteur).lower().split()
+        if "python" in mots:
             print(ligne, file=sortie)
