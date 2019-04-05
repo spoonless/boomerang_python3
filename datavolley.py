@@ -1,11 +1,15 @@
-import scrapping
+"""
+Exemple de webscraping
+
+@author: David Gayerie
+"""
+import webscraping
 
 
-def ma_fonction(x):
+def afficher_nom_fichier(x):
     print(x)
-    return True
+    return False
 
-scrapping.go_and_find(url="http://datavolley.lnv.fr/2017/EScoresheet/Men/", 
-                      extensions=[".pdf"], 
-                      filter_function=ma_fonction)
-
+webscraping.go_and_find(url="http://datavolley.lnv.fr/2017/EScoresheet/Men/", 
+                         extensions=[".pdf"], 
+                         filter_function=afficher_nom_fichier)

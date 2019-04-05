@@ -1,7 +1,7 @@
 '''
-Application simple
+Application simple pour donner un exemple de widgets de TkInter.
 
-@author: david
+@author: David Gayerie
 '''
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -10,7 +10,6 @@ import tkinter.messagebox as mb
 
 window = tk.Tk()
 window.title("My GUI")
-window.geometry('800x600')
 
 label = tk.Label(window, text="Hello", font=font.Font(size= 24, weight= "bold"))
 label.grid(column=0, row=0)

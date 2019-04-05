@@ -1,7 +1,13 @@
+"""
+Exemple d'une interface graphique pour simuler une interaction avec une
+interface réseau.
+
+@author: David Gayerie
+"""
 import tkinter as tk
 import tkinter.ttk as ttk
 
-def mon_appli(func):
+def app_interface_reseau(func):
     def boutton_clique():
         func(interface_reseau.get(), vitesse_transfert.get(), mode_synchrone.get())
         
@@ -39,4 +45,4 @@ def afficher_choix_utilisateur(interface_reseau, vitesse_transfert, mode_synchro
     print(f"Vitesse de transfert : {vitesse_transfert}")
     print(f"Mode synchrone : {mode_synchrone}")
 
-mon_appli(afficher_choix_utilisateur)
+app_interface_reseau(afficher_choix_utilisateur)

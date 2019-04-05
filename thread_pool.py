@@ -1,3 +1,8 @@
+"""
+Exemple de programmation parallèle (lancement de plusieurs taches)
+
+@author: David Gayerie
+"""
 from concurrent.futures import ThreadPoolExecutor
 
 

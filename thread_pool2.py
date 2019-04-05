@@ -1,3 +1,9 @@
+"""
+Exemple de programmation parallèle (lancement de plusieurs fonctions qui
+produisent un résultat).
+
+@author: David Gayerie
+"""
 from concurrent.futures import ThreadPoolExecutor
 
 futures = []

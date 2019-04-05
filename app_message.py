@@ -1,9 +1,15 @@
+"""
+Exemple simple d'application pour afficher un message saisi dans une boite
+de dialogue.
+
+@author: David Gayerie
+"""
 import tkinter as tk
 import tkinter.messagebox as mb
 
 app = tk.Tk()
 
-libelle = tk.Label(app, text="Hello world!")
+libelle = tk.Label(app, text="Message : ")
 libelle.grid(column=0, row=0)
 
 zone_saisie = tk.Entry(app)

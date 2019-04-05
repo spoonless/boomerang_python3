@@ -1,7 +1,8 @@
 '''
-Application simple
+Application graphique simple. Exemple de l'utilisation de la programmation
+objet pour créer une classe spécialisée de Frame.
 
-@author: david
+@author: David Gayerie
 '''
 import tkinter as tk
 

@@ -1,7 +1,7 @@
 '''
 Application simple
 
-@author: david
+@author: David Gayerie
 '''
 import tkinter as tk
 

@@ -1,3 +1,11 @@
+"""
+Incorporation de matplotlib dans une interface graphique avec tkinter.
+
+Cf. la documentation officielle de matplotblib :
+
+https://matplotlib.org/gallery/user_interfaces/embedding_in_tk_canvas_sgskip.html
+
+"""
 import tkinter
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
